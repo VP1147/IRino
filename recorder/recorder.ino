@@ -7,7 +7,7 @@ int b_reproduce = 6;
 int led = 7;
 
 void setup() {
-  //Serial.begin(9600);
+  Serial.begin(9600);
   //pinMode(Sensor, INPUT);
   pinMode(b_record, INPUT);
   pinMode(b_reproduce, INPUT);
@@ -15,6 +15,7 @@ void setup() {
 }
 
 void loop() {
+  Serial.println(int(analogRead(Sensor)));
   
   if(digitalRead(b_record) == HIGH) {
     digitalWrite(led, HIGH);
@@ -27,7 +28,7 @@ void loop() {
   
   else if(digitalRead(b_reproduce) == HIGH) {
     for(int d = 0; d < Size; d++) { 
-      analogWrite(led, int((data[d]-30)*2));
+      analogWrite(led, int((data[d])));
       //Serial.println(data[d]);
       delay(1000/t); 
       }
@@ -35,6 +36,7 @@ void loop() {
   else {
     digitalWrite(led, LOW);
     }
+    
+  //for(int p = 0; p <= Size; p++) { Serial.println(data[p]); }
 }
 
-  // for(int p = 0; p <= Size; p++) { Serial.println(data[p]); }
